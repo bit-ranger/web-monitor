@@ -1,0 +1,17 @@
+{
+  "name": "dom_path_monitor",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "release": "webpack build --progress --mode=production",
+    "dev": "NODE_ENV=development webpack build --progress --watch --mode=development --watch-options-stdin"
+  },
+  "dependencies": {
+    "jsonpath": "^1.1.1",
+    "sha1": "^1.1.1"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^9.0.1",
+    "webpack-cli": "^4.9.1"
+  }
+}
