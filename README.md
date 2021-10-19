@@ -7,7 +7,7 @@ configuration example
 [
     {
         "id": "zhihu-hot",
-        "cron": "/1 * * * *",
+        "cron": "*/1 * * * *",
         "method": "GET",
         "url": "https://www.zhihu.com/hot",
         "responseType": "document",
@@ -16,7 +16,7 @@ configuration example
     },
     {
         "id": "zhihu-huaxiabeilai",
-        "cron": "/1 * * * *",
+        "cron": "*/1 * * * *",
         "method": "GET",
         "url": "https://www.zhihu.com/api/v4/columns/dsliu/items",
         "responseType": "json",
