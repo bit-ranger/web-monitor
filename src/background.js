@@ -4,7 +4,7 @@ const schedule = require('node-schedule');
 
 
 chrome.storage.sync.get("config", (configObj) => {
-    console.log("config loaded: " + JSON.stringify(configObj));
+    console.log(new Date().toLocaleString(), "config loaded: " + JSON.stringify(configObj));
     let configItemList = configObj["config"];
     if (!configItemList) {
         return;
@@ -49,15 +49,15 @@ chrome.storage.sync.get("config", (configObj) => {
 
                 const monitor_id_gen = "monitor#" + monitor_id;
                 chrome.storage.sync.get(monitor_id_gen, (saved) => {
-                    console.log(monitor_id_gen + " loaded data: " + JSON.stringify(saved));
+                    console.log(new Date().toLocaleString(), monitor_id_gen + " loaded data: " + JSON.stringify(saved));
                     saved = saved[monitor_id_gen];
                     if (saved != null && saved["hash"] != null && saved.hash === hash) {
-                        console.log(monitor_id_gen + " matched exist hash: " + hash);
+                        console.log(new Date().toLocaleString(), monitor_id_gen + " matched exist hash: " + hash);
                     } else {
                         var saved = {};
                         saved[monitor_id_gen] = {hash: hash}
                         chrome.storage.sync.set(saved, function () {
-                            console.log(monitor_id_gen + " saved new hash: " + hash + ", " + valueList);
+                            console.log(new Date().toLocaleString(), monitor_id_gen + " saved new hash: " + hash + ", " + valueList);
                         });
 
                     }
