@@ -20,7 +20,8 @@ chrome.storage.sync.get("config", (configObj) => {
             const responseType = item.responseType;
             const valuePath = item.valuePath;
             const nodeAttribute = item["nodeAttribute"];
-            const webhookUrl = item["webhookUrl"];
+            const webhookUrl = item.webhook.url;
+            const webhookBody = item.webhook.body;
 
             const xhr = new XMLHttpRequest();
             xhr.open(method, url, true);
@@ -38,7 +39,6 @@ chrome.storage.sync.get("config", (configObj) => {
                         } else {
                             part = head.textContent;
                         }
-                        ;
                         valueList.push(part);
                         head = nodeList.iterateNext();
                     }
@@ -59,13 +59,7 @@ chrome.storage.sync.get("config", (configObj) => {
                         const hook = new XMLHttpRequest();
                         hook.open("POST", webhookUrl, true);
                         hook.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-                        hook.send({
-                            monitor: {
-                                id: monitor_id,
-                                url: url,
-                                value: valueList
-                            }
-                        });
+                        hook.send(JSON.stringify(webhookBody));
 
                         var saved = {};
                         saved[monitor_id_gen] = {hash: hash};
