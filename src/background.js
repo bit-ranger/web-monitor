@@ -20,6 +20,7 @@ chrome.storage.sync.get("config", (configObj) => {
             const responseType = item.responseType;
             const valuePath = item.valuePath;
             const nodeAttribute = item["nodeAttribute"];
+            const webhookUrl = item["webhookUrl"];
 
             const xhr = new XMLHttpRequest();
             xhr.open(method, url, true);
@@ -36,7 +37,8 @@ chrome.storage.sync.get("config", (configObj) => {
                             part = head.getAttribute(nodeAttribute);
                         } else {
                             part = head.textContent;
-                        };
+                        }
+                        ;
                         valueList.push(part);
                         head = nodeList.iterateNext();
                     }
@@ -54,8 +56,19 @@ chrome.storage.sync.get("config", (configObj) => {
                     if (saved != null && saved["hash"] != null && saved.hash === hash) {
                         console.log(new Date().toLocaleString(), monitor_id_gen + " matched exist hash: " + hash);
                     } else {
+                        const hook = new XMLHttpRequest();
+                        hook.open("POST", webhookUrl, true);
+                        hook.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                        hook.send({
+                            monitor: {
+                                id: monitor_id,
+                                url: url,
+                                value: valueList
+                            }
+                        });
+
                         var saved = {};
-                        saved[monitor_id_gen] = {hash: hash}
+                        saved[monitor_id_gen] = {hash: hash};
                         chrome.storage.sync.set(saved, function () {
                             console.log(new Date().toLocaleString(), monitor_id_gen + " saved new hash: " + hash + ", " + valueList);
                         });
