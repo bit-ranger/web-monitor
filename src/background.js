@@ -1,5 +1,6 @@
 var sha1 = require('sha1');
 var jp = require('jsonpath');
+const schedule = require('node-schedule');
 
 
 chrome.storage.sync.get("config", (configObj) => {
@@ -11,7 +12,7 @@ chrome.storage.sync.get("config", (configObj) => {
     configItemList.forEach(monitor);
 
     function monitor(item) {
-        setInterval(() => {
+        schedule.scheduleJob(item.cron, () => {
 
             const monitor_id = item.id;
             const method = item.method;
@@ -63,7 +64,7 @@ chrome.storage.sync.get("config", (configObj) => {
                 });
             });
             xhr.send();
-        }, item.interval)
+        });
     }
 });
 
