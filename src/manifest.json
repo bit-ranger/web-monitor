@@ -24,5 +24,9 @@
     ],
     "web_accessible_resources": [
         "js/inject.js"
-    ]
+    ],
+    "options_ui": {
+        "chrome_style": true,
+        "page": "options.html"
+    }
 }

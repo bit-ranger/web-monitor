@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 let baseConfig = {
     entry: {
         background: './src/background.js',
+        options: './src/options.js',
     },
     output: {
         path: path.join(__dirname, 'dist'),
@@ -23,6 +24,10 @@ let baseConfig = {
                 {
                     from: path.join(__dirname, './src/manifest.json'),
                     to: path.join(__dirname, './dist/manifest.json')
+                },
+                {
+                    from: path.join(__dirname, './src/options.html'),
+                    to: path.join(__dirname, './dist/options.html')
                 }
             ]
         })
