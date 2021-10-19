@@ -36,7 +36,7 @@ chrome.storage.sync.get("config", (configObj) => {
                             part = head.getAttribute(nodeAttribute);
                         } else {
                             part = head.textContent;
-                        }
+                        };
                         valueList.push(part);
                         head = nodeList.iterateNext();
                     }
