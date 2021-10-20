@@ -1,5 +1,7 @@
 # web monitor
 
+a chrome extension
+
 using XPath/JsonPath
 
 configuration example
