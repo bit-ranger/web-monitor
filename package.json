@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "release": "webpack build --progress --mode=production",
-    "dev": "NODE_ENV=development webpack build --progress --watch --mode=development --watch-options-stdin"
+    "build": "NODE_ENV=development webpack build --progress --watch --mode=development --watch-options-stdin"
   },
   "dependencies": {
     "jsonpath": "^1.1.1",
