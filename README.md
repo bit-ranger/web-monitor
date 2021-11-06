@@ -4,7 +4,7 @@ a chrome extension
 
 using XPath/JsonPath
 
-configuration example
+## example
 
 监控网站变化, 并发送通知到pocket
 
