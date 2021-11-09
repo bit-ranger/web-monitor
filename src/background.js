@@ -27,6 +27,9 @@ chrome.storage.sync.get("config", (configObj) => {
             xhr.open(method, url, true);
             xhr.responseType = responseType;
             xhr.addEventListener('loadend', function (e) {
+                if (xhr.status < 200 || xhr.status >= 300){
+                    return;
+                }
                 let valueList = [];
                 if (responseType === "document") {
                     let responseXML = xhr.responseXML
