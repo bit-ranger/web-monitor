@@ -7,6 +7,7 @@ import requireTransform from 'vite-plugin-require-transform';
 export default defineConfig({
   plugins: [requireTransform({})],
   build: {
+    minify: false,
     rollupOptions: {
       input: {
         'background': path.resolve(__dirname, 'src/background.ts'),
