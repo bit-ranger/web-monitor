@@ -1,4 +1,4 @@
-import * as sha1 from 'sha1';
+import * as hash from 'sha1';
 import * as jp from 'jsonpath';
 import * as schedule from 'node-schedule';
 
@@ -50,7 +50,7 @@ chrome.storage.sync.get("config", (configObj) => {
           valueList = jp.query(responseJson, valuePath);
         }
 
-        const hash = sha1(valueList.join(""));
+        const hash = hash(valueList.join(""));
 
         const monitor_id_gen = "monitor#" + monitor_id;
         chrome.storage.sync.get(monitor_id_gen, (saved) => {
