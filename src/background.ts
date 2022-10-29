@@ -1,6 +1,6 @@
-var sha1 = require('sha1');
-var jp = require('jsonpath');
-const schedule = require('node-schedule');
+import * as sha1 from 'sha1';
+import * as jp from 'jsonpath';
+import * as schedule from 'node-schedule';
 
 
 chrome.storage.sync.get("config", (configObj) => {
